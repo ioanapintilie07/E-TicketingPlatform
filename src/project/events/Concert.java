@@ -6,8 +6,8 @@ public class Concert extends Event {
     private String musician;
     private String genre;
 
-    public Concert(String name, String date, String description, int durationInHours, Location location, int participantsLimit, String musician, String genre) {
-        super(name, date, description, durationInHours, location, participantsLimit);
+    public Concert(String name, String date, String description, int durationInHours, int locationId, int participantsLimit, String musician, String genre) {
+        super(name, date, description, durationInHours, locationId, participantsLimit);
         this.musician = musician;
         this.genre = genre;
     }
@@ -30,6 +30,6 @@ public class Concert extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + "Performer :" + musician + ". Enjoy a night of " + genre + " music.";
+        return super.toString() + "Performer: " + musician + ". Enjoy a night of " + genre + " music.";
     }
 }

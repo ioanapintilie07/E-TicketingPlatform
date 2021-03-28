@@ -37,4 +37,9 @@ public class PhysicalLocation extends Location {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "City: " + city + ". Address: " + address + ". Capacity: " + capacity;
+    }
 }

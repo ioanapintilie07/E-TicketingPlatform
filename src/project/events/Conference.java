@@ -6,8 +6,8 @@ public class Conference extends Event {
     private String speaker;
     private String topic;
 
-    public Conference(String name, String date, String description, int durationInHours, Location location, int participantsLimit, String speaker, String topic) {
-        super(name, date, description, durationInHours, location, participantsLimit);
+    public Conference(String name, String date, String description, int durationInHours, int locationId, int participantsLimit, String speaker, String topic) {
+        super(name, date, description, durationInHours, locationId, participantsLimit);
         this.speaker = speaker;
         this.topic = topic;
     }

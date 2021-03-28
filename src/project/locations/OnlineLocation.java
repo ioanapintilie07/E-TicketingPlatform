@@ -27,4 +27,9 @@ public class OnlineLocation extends Location {
     public void setMaxAttendees(int maxAttendees) {
         this.maxAttendees = maxAttendees;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Link: " + accessLink + ". Max attendees: " + maxAttendees + ". ";
+    }
 }

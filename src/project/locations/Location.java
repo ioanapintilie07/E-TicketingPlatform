@@ -23,4 +23,9 @@ public class Location {
     public int getLocationId() {
         return locationId;
     }
+
+    @Override
+    public String toString() {
+        return "Location " + locationId + ". Name: " + name + ". ";
+    }
 }

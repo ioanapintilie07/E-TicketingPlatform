@@ -2,21 +2,22 @@ package project.events;
 import java.util.List;
 
 
-public class Exhibition {
-    private List<String> artists;
+public class Exhibition extends Event {
+    private String mainArtist;
     private String theme;
 
-    public Exhibition(List<String> artists, String theme) {
-        this.artists = artists;
+    public Exhibition(String name, String date, String description, int durationInHours, int locationId, int participantsLimit, String mainArtist, String theme) {
+        super(name, date, description, durationInHours, locationId, participantsLimit);
+        this.mainArtist = mainArtist;
         this.theme = theme;
     }
 
-    public List<String> getArtists() {
-        return artists;
+    public String getMainArtist() {
+        return mainArtist;
     }
 
-    public void setArtists(List<String> artists) {
-        this.artists = artists;
+    public void setMainArtist(String mainArtist) {
+        this.mainArtist = mainArtist;
     }
 
     public String getTheme() {
@@ -29,6 +30,6 @@ public class Exhibition {
 
     @Override
     public String toString() {
-        return super.toString() + "Featuring works by: " + artists + ". Theme: ";
+        return super.toString() + "Featuring works by: " + mainArtist + ". Theme: " + theme;
     }
 }

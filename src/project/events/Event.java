@@ -2,7 +2,7 @@ package project.events;
 
 import project.clientsAndPurchases.Ticket;
 import project.locations.Location;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Event {
     protected int eventId;
@@ -10,23 +10,23 @@ public class Event {
     protected String date;
     protected String description;
     protected int durationInHours;
-    protected Location location;
+    protected int locationId;
     protected int participantsLimit;
     protected int confirmedParticipations = 0;
     protected Boolean soldOut = false;
-    protected List<Ticket> tickets;
+    protected ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     static int noOfEvents = 0;
 
     {
         this.eventId = ++noOfEvents;
     }
 
-    public Event(String name, String date, String description, int durationInHours, Location location, int participantsLimit) {
+    public Event(String name, String date, String description, int durationInHours, int locationId, int participantsLimit) {
         this.name = name;
         this.date = date;
         this.description = description;
         this.durationInHours = durationInHours;
-        this.location = location;
+        this.locationId = locationId;
         this.participantsLimit = participantsLimit;
     }
 
@@ -62,12 +62,12 @@ public class Event {
         this.durationInHours = durationInHours;
     }
 
-    public Location getLocation() {
-        return location;
+    public int getLocationId() {
+        return locationId;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(int locationId) {
+        this.locationId = locationId;
     }
 
     public int getParticipantsLimit() {
@@ -113,13 +113,15 @@ public class Event {
         }
     }
 
-    public void addTicket (Ticket ticket) {
+    public boolean addTicket (Ticket ticket) {
         if (ticket == null) {
             System.out.println("Invalid request");
+            return false;
         }
         else {
             if (soldOut) {
                 System.out.println("Sorry, this event is sold out.");
+                return false;
             }
             else {
                 if (participantsLimit == confirmedParticipations + 1) {
@@ -127,13 +129,14 @@ public class Event {
                 }
                 confirmedParticipations++;
                 tickets.add(ticket);
+                return true;
             }
         }
     }
 
     @Override
     public String toString() {
-        return "Event ID: " + eventId + ". " + "Location: " + location.getName() + ". " + name + " will take place on " + date + " and will last " + durationInHours + ". "
-                + description + ". Participants limit: " + participantsLimit + ".";
+        return "Event ID: " + eventId + ". " + "LocationId: " + locationId + ". " + name + " will take place on " + date + " and will last " + durationInHours + " hours. "
+                + description + ". Participants limit: " + participantsLimit + ". ";
     }
 }

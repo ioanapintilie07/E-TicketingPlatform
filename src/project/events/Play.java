@@ -4,21 +4,21 @@ import project.locations.Location;
 import java.util.List;
 
 public class Play extends Event{
-    List<String> actors;
+    String mainActor;
     private String genre;
 
-    public Play(String name, String date, String description, int durationInHours, Location location, int participantsLimit, List<String> actors, String genre) {
-        super(name, date, description, durationInHours, location, participantsLimit);
-        this.actors = actors;
+    public Play(String name, String date, String description, int durationInHours, int locationId, int participantsLimit, String mainActor, String genre) {
+        super(name, date, description, durationInHours, locationId, participantsLimit);
+        this.mainActor = mainActor;
         this.genre = genre;
     }
 
-    public List<String> getActors() {
-        return actors;
+    public String getMainActor() {
+        return mainActor;
     }
 
-    public void setActors(List<String> actors) {
-        this.actors = actors;
+    public void setMainActor(String mainActor) {
+        this.mainActor = mainActor;
     }
 
     public String getGenre() {
@@ -31,6 +31,6 @@ public class Play extends Event{
 
     @Override
     public String toString() {
-        return super.toString() + "Play starring: " + actors + ". Genre: " + genre + ".";
+        return super.toString() + "Play starring: " + mainActor + ". Genre: " + genre + ".";
     }
 }

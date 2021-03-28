@@ -2,7 +2,7 @@ package project.clientsAndPurchases;
 
 import java.util.List;
 
-public class Client {
+public class Client implements Comparable<Client>{
     private String firstName;
     private String lastName;
     private int age;
@@ -46,4 +46,15 @@ public class Client {
         return clientId;
     }
 
+    @Override
+    public String toString() {
+        return "Name: " + firstName + " " + lastName + ". Age: " + age + ".";
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        String fullName1 = lastName + firstName;
+        String fullName2 = o.getLastName() + o.getFirstName();
+        return fullName1.compareTo(fullName2);
+    }
 }
