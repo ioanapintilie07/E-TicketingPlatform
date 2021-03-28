@@ -6,6 +6,12 @@ public class Ticket {
     Event event;
     Client client;
     private double price;
+    private int ticketId;
+    static int noOfTickets = 0;
+
+    {
+        ticketId = ++noOfTickets;
+    }
 
     public Ticket(Event event, Client client, double price) {
         this.event = event;
@@ -37,4 +43,7 @@ public class Ticket {
         this.price = price;
     }
 
+    public int getTicketId() {
+        return ticketId;
+    }
 }

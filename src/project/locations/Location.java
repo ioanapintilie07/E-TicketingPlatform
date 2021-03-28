@@ -19,4 +19,8 @@ public class Location {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getLocationId() {
+        return locationId;
+    }
 }

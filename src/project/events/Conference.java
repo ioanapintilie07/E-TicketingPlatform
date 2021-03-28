@@ -27,4 +27,9 @@ public class Conference extends Event {
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Speaker: " + speaker + ". Topic: " + topic + ".";
+    }
 }

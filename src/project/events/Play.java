@@ -28,4 +28,9 @@ public class Play extends Event{
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Play starring: " + actors + ". Genre: " + genre + ".";
+    }
 }

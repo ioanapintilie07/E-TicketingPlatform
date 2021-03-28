@@ -1,13 +1,15 @@
 package project.clientsAndPurchases;
 
+import java.util.List;
+
 public class Client {
     private String firstName;
     private String lastName;
     private int age;
     private int clientId;
-    static int noofClients = 0;
+    static int noOfClients = 0;
     {
-        clientId = ++noofClients;
+        this.clientId = ++noOfClients;
     }
 
     public Client(String firstName, String lastName, int age) {
@@ -39,4 +41,9 @@ public class Client {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public int getClientId() {
+        return clientId;
+    }
+
 }

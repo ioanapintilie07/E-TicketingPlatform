@@ -26,4 +26,9 @@ public class Exhibition {
     public void setTheme(String theme) {
         this.theme = theme;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Featuring works by: " + artists + ". Theme: ";
+    }
 }

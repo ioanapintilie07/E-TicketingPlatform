@@ -1,5 +1,6 @@
 package project.events;
 
+import project.clientsAndPurchases.Ticket;
 import project.locations.Location;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Event {
     protected int participantsLimit;
     protected int confirmedParticipations = 0;
     protected Boolean soldOut = false;
+    protected List<Ticket> tickets;
     static int noOfEvents = 0;
 
     {
@@ -92,16 +94,46 @@ public class Event {
         this.soldOut = soldOut;
     }
 
-    public Boolean checkAvailability () {
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void checkAvailability () {
         if (soldOut) {
-            return false;
+            System.out.println("Looks like this event is sold out!");
         }
         else {
-            if (confirmedParticipations + 1 == participantsLimit) {
-                soldOut = true;
+            int remaining = participantsLimit -  confirmedParticipations;
+            if (remaining == 1) {
+                System.out.println("Hurry, only one ticket left!");
             }
-            confirmedParticipations++;
-            return true;
+            else {
+                System.out.println("There are " + remaining + " tickets left for this event!");
+            }
         }
+    }
+
+    public void addTicket (Ticket ticket) {
+        if (ticket == null) {
+            System.out.println("Invalid request");
+        }
+        else {
+            if (soldOut) {
+                System.out.println("Sorry, this event is sold out.");
+            }
+            else {
+                if (participantsLimit == confirmedParticipations + 1) {
+                    soldOut = true;
+                }
+                confirmedParticipations++;
+                tickets.add(ticket);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Event ID: " + eventId + ". " + "Location: " + location.getName() + ". " + name + " will take place on " + date + " and will last " + durationInHours + ". "
+                + description + ". Participants limit: " + participantsLimit + ".";
     }
 }

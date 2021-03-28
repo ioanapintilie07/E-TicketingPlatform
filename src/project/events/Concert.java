@@ -27,4 +27,9 @@ public class Concert extends Event {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Performer :" + musician + ". Enjoy a night of " + genre + " music.";
+    }
 }
