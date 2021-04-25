@@ -98,42 +98,6 @@ public class Event {
         return eventId;
     }
 
-    public void checkAvailability () {
-        if (soldOut) {
-            System.out.println("Looks like this event is sold out!");
-        }
-        else {
-            int remaining = participantsLimit -  confirmedParticipations;
-            if (remaining == 1) {
-                System.out.println("Hurry, only one ticket left!");
-            }
-            else {
-                System.out.println("There are " + remaining + " tickets left for this event!");
-            }
-        }
-    }
-
-    public boolean addTicket (Ticket ticket) {
-        if (ticket == null) {
-            System.out.println("Invalid request");
-            return false;
-        }
-        else {
-            if (soldOut) {
-                System.out.println("Sorry, this event is sold out.");
-                return false;
-            }
-            else {
-                if (participantsLimit == confirmedParticipations + 1) {
-                    soldOut = true;
-                }
-                confirmedParticipations++;
-                tickets.add(ticket);
-                return true;
-            }
-        }
-    }
-
     @Override
     public String toString() {
         return "Event ID: " + eventId + ". " + "LocationId: " + locationId + ". " + name + " will take place on " + date + " and will last " + durationInHours + " hours. "

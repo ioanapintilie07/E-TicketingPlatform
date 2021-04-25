@@ -21,7 +21,7 @@ public class Service {
     static ArrayList<Client> clients = new ArrayList<Client>();
     static ArrayList<Location> locations = new ArrayList<Location>();
 
-    public static void eventMenu() {
+    public void eventMenu() {
         System.out.println("What kind of event would you like to create?");
         System.out.println("1. Doesn't matter");
         System.out.println("2. Concert");
