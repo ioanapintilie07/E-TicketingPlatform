@@ -31,14 +31,14 @@ public class Service {
         System.out.println("6. Play");
     }
 
-    public static void locationMenu() {
+    public void locationMenu() {
         System.out.println("What kind of location would you like to create?");
         System.out.println("1. Doesn't matter");
         System.out.println("2. Online location");
         System.out.println("3. Physical location");
     }
 
-    public static void listEvents() {
+    public void listEvents() {
         if (events.size() == 0) {
             System.out.println("No events to show. \n");
         }
@@ -49,7 +49,7 @@ public class Service {
         }
     }
 
-    public static void listLocations() {
+    public void listLocations() {
         if (locations.size() == 0) {
             System.out.println("No locations to show. \n");
         }
@@ -60,7 +60,7 @@ public class Service {
         }
     }
 
-    public static void listClients() {
+    public void listClients() {
         if (clients.size() == 0) {
             System.out.println("No clients to show!");
         }
@@ -73,7 +73,7 @@ public class Service {
     }
 
 
-    public static Event searchEvent (int id) {
+    public Event searchEvent (int id) {
         Event newEvent = null;
         for (Event event:events) {
             if (event.getEventId() == id) {
@@ -83,7 +83,7 @@ public class Service {
         return newEvent;
     }
 
-    public static Client searchClient (int id) {
+    public Client searchClient (int id) {
         Client newClient = null;
         for (Client client:clients) {
             if (client.getClientId() == id) {
@@ -93,7 +93,7 @@ public class Service {
         return newClient;
     }
 
-    public static Event searchFundraiser(int id) {
+    public Event searchFundraiser(int id) {
         Event newEvent = null;
         for (Event event:events) {
             if (event instanceof Fundraiser && event.getEventId() == id) {
@@ -103,11 +103,11 @@ public class Service {
         return newEvent;
     }
 
-    public static boolean validateLocation(int lid) {
+    public boolean validateLocation(int lid) {
         return lid >= 1 && lid <= locations.size();
     }
 
-    public static void addEvent() {
+    public void addEvent() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
         if (locations.size() == 0) {
@@ -185,7 +185,7 @@ public class Service {
         }
     }
 
-    public static void addLocation() {
+    public void addLocation() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Enter location name: ");
         String name = scanner.next();
@@ -218,7 +218,7 @@ public class Service {
         System.out.println("\nLocation added successfully!\n");
     }
 
-    public static void addClient() {
+    public void addClient() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("First name: ");
         String first = scanner.next();
@@ -231,7 +231,7 @@ public class Service {
         System.out.println("Client added successfully!");
     }
 
-    public static void generateEvent() {
+    public void generateEvent() {
         if (locations.size() == 0) {
             System.out.println("There are no registered locations. Please add a location before adding an event.");
         }
@@ -304,7 +304,7 @@ public class Service {
 
     }
 
-    public static void generateLocation() {
+    public void generateLocation() {
         Random rand = new Random();
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         String[] names = {"Garden of Eve", "Top the Rooftop Tops", "Lantern Club", "Rose Petal", "Pretentious Theatre"};
@@ -339,7 +339,7 @@ public class Service {
         System.out.println("\nLocation added succcessfully!\n");
     }
 
-    public static void generateClient() {
+    public void generateClient() {
         Random rand = new Random();
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         String[] firstNames = {"Anna", "Petunia", "Harold", "George", "Sam"};
@@ -352,8 +352,9 @@ public class Service {
         System.out.println("\nClient added successfully!\n");
     }
 
-    public static void checkEventAvailability() {
+    public void checkEventAvailability() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        TicketService ticketService = new TicketService();
         System.out.println("Enter the id of the event you want to check out: ");
         int id = scanner.nextInt();
         Event event = searchEvent(id);
@@ -361,12 +362,13 @@ public class Service {
             System.out.println("Sorry, couldn't find the event you're looking for.");
         }
         else {
-            event.checkAvailability();
+            ticketService.checkAvailability(event);
         }
     }
 
-    public static void buyTicket() {
+    public void buyTicket() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        TicketService ticketService = new TicketService();
         System.out.println("Enter the id of the event you want to attend: ");
         int eventId= scanner.nextInt();
         System.out.println("Enter your client id: ");
@@ -384,13 +386,13 @@ public class Service {
         }
         else {
             Ticket ticket = new Ticket(event, client, price);
-            boolean value = event.addTicket(ticket);
+            boolean value = ticketService.addTicket(event, ticket);
             if (value) {System.out.println("Purchase successful!");};
         }
 
     }
 
-    public static void makeDonation() {
+    public void makeDonation() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Enter fundraiser id: ");
         int id = scanner.nextInt();
@@ -415,7 +417,7 @@ public class Service {
         }
     }
 
-    public static void showSum() {
+    public void showSum() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Enter fundraiser id: ");
         int id = scanner.nextInt();
@@ -429,7 +431,7 @@ public class Service {
         }
     }
 
-    public static void checkReached() {
+    public void checkReached() {
         Scanner scanner = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Enter fundraiser id: ");
         int id = scanner.nextInt();

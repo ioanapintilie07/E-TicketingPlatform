@@ -24,51 +24,52 @@ public class Main {
     public static void main(String[] args) {
         int opt = -1;
         Scanner scanner = new Scanner(System.in);
+        Service service = new Service();
         while (opt != 0) {
             ShowMenu();
             opt = scanner.nextInt();
             switch (opt) {
                 case 1:
-                    Service.listEvents();
+                    service.listEvents();
                     break;
                 case 2:
-                    Service.addEvent();
+                    service.addEvent();
                     break;
                 case 3:
-                    Service.generateEvent();
+                    service.generateEvent();
                     break;
                 case 4:
-                    Service.listLocations();
+                    service.listLocations();
                     break;
                 case 5:
-                    Service.addLocation();
+                    service.addLocation();
                     break;
                 case 6:
-                    Service.generateLocation();
+                    service.generateLocation();
                     break;
                 case 7:
-                    Service.listClients();
+                    service.listClients();
                     break;
                 case 8:
-                    Service.addClient();
+                    service.addClient();
                     break;
                 case 9:
-                    Service.generateClient();
+                    service.generateClient();
                     break;
                 case 10:
-                    Service.checkEventAvailability();
+                    service.checkEventAvailability();
                     break;
                 case 11:
-                    Service.buyTicket();
+                    service.buyTicket();
                     break;
                 case 12:
-                    Service.makeDonation();
+                    service.makeDonation();
                     break;
                 case 13:
-                    Service.showSum();
+                    service.showSum();
                     break;
                 case 14:
-                    Service.checkReached();
+                    service.checkReached();
                     break;
             }
         }
