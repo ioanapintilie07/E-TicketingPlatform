@@ -28,6 +28,7 @@ public class Main {
         Service service = new Service();
         Reader reader = Reader.getInstance();
         Writer writer = Writer.getInstance();
+        Audit audit = Audit.getInstance();
 
         //load data from csv files
         Service.clients.addAll(reader.readClientsCSV());
@@ -40,45 +41,59 @@ public class Main {
             switch (opt) {
                 case 1:
                     service.listEvents();
+                    audit.add(1);
                     break;
                 case 2:
                     service.addEvent();
+                    audit.add(2);
                     break;
                 case 3:
                     service.generateEvent();
+                    audit.add(3);
                     break;
                 case 4:
                     service.listLocations();
+                    audit.add(4);
                     break;
                 case 5:
                     service.addLocation();
+                    audit.add(5);
                     break;
                 case 6:
                     service.generateLocation();
+                    audit.add(6);
                     break;
                 case 7:
                     service.listClients();
+                    audit.add(7);
                     break;
                 case 8:
                     service.addClient();
+                    audit.add(8);
                     break;
                 case 9:
                     service.generateClient();
+                    audit.add(9);
                     break;
                 case 10:
                     service.checkEventAvailability();
+                    audit.add(10);
                     break;
                 case 11:
                     service.buyTicket();
+                    audit.add(11);
                     break;
                 case 12:
                     service.makeDonation();
+                    audit.add(12);
                     break;
                 case 13:
                     service.showSum();
+                    audit.add(13);
                     break;
                 case 14:
                     service.checkReached();
+                    audit.add(14);
                     break;
             }
         }
@@ -87,6 +102,8 @@ public class Main {
         writer.writeEvents(Service.events);
         writer.writePhysicalLocations(Service.locations);
         writer.writeOnlineLocations(Service.locations);
+
+        audit.close();
     }
 
 }
