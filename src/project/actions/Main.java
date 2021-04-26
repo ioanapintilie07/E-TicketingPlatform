@@ -24,7 +24,16 @@ public class Main {
     public static void main(String[] args) {
         int opt = -1;
         Scanner scanner = new Scanner(System.in);
+
         Service service = new Service();
+        Reader reader = Reader.getInstance();
+        Writer writer = Writer.getInstance();
+
+        //load data from csv files
+        Service.clients.addAll(reader.readClientsCSV());
+        Service.locations.addAll(reader.readPhysicalLocationsCSV());
+        Service.locations.addAll(reader.readOnlineLocationsCSV());
+        Service.events.addAll(reader.readEventsCSV());
         while (opt != 0) {
             ShowMenu();
             opt = scanner.nextInt();
@@ -73,6 +82,11 @@ public class Main {
                     break;
             }
         }
+        //write data to csv files
+        writer.writeClients(Service.clients);
+        writer.writeEvents(Service.events);
+        writer.writePhysicalLocations(Service.locations);
+        writer.writeOnlineLocations(Service.locations);
     }
 
 }
