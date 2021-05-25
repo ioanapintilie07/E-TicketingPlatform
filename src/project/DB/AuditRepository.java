@@ -21,7 +21,7 @@ public class AuditRepository {
             resultSet.close();
             return audit;
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to create object " + exception.getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ public class AuditRepository {
             return entries;
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to fetch all audit entries" + exception.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class AuditRepository {
             statement.execute(query);
 
         }catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to clear audit" + exception.getMessage());
         }
     }
 

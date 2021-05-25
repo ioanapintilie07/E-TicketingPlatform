@@ -32,7 +32,7 @@ public class ConcertRepository {
             resultSet.close();
             return concert;
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to create concert " + concert + exception.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class ConcertRepository {
             return concerts;
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to fetch all concerts " + exception.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class ConcertRepository {
                 concerts.add(concert);
             }
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to find concerts from musician " + musician + exception.getMessage());
         }
         return concerts;
     }
@@ -97,7 +97,7 @@ public class ConcertRepository {
             return preparedStatement.executeUpdate();
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to update concert" +  eventId + exception.getMessage());
         }
     }
 

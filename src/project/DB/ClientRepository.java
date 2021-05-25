@@ -22,7 +22,7 @@ public class ClientRepository {
             resultSet.close();
             return client;
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to create client " + client + "\n" + exception.getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ public class ClientRepository {
             return clients;
 
         } catch (SQLException exception) {
-            throw new RuntimeException("Something went wrong while tying to get all clients ");
+            throw new RuntimeException("Something went wrong while tying to get all clients " + exception.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class ClientRepository {
             }
             resultSet.close();
         } catch (SQLException exception) {
-            throw new RuntimeException("Something went wrong while searching for client " + clientId);
+            throw new RuntimeException("Something went wrong while searching for client " + clientId + exception.getMessage());
         }
         return newClient;
     }
@@ -68,7 +68,7 @@ public class ClientRepository {
             preparedStatement.setInt(1, clientId);
             return preparedStatement.executeUpdate();
         } catch (SQLException exception) {
-            throw new RuntimeException("Something went wrong while deleting client " + clientId);
+            throw new RuntimeException("Something went wrong while deleting client " + clientId + exception.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public class ClientRepository {
             return preparedStatement.executeUpdate();
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while updating client" + clientId +  exception.getMessage());
         }
     }
 

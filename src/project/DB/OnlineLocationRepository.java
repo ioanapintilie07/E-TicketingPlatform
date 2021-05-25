@@ -24,7 +24,7 @@ public class OnlineLocationRepository {
             resultSet.close();
             return onlineLocation;
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to create " + onlineLocation + exception.getMessage());
         }
     }
 
@@ -58,7 +58,7 @@ public class OnlineLocationRepository {
                 onlineLocation.setLocationId(resultSet.getInt("id"));
             }
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to find location" + locationId + exception.getMessage());
         }
         return onlineLocation;
     }
@@ -82,7 +82,7 @@ public class OnlineLocationRepository {
             preparedStatement.setInt(2, locationId);
             return preparedStatement.executeUpdate();
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to update location" + locationId + exception.getMessage());
         }
     }
 

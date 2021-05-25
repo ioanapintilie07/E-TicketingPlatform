@@ -24,7 +24,7 @@ public class PhysicalLocationRepository {
             resultSet.close();
             return physicalLocation;
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to create" + physicalLocation + exception.getMessage());
         }
     }
 
@@ -42,7 +42,7 @@ public class PhysicalLocationRepository {
             return locations;
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to fetch all locations" + exception.getMessage());
         }
     }
 
@@ -58,7 +58,7 @@ public class PhysicalLocationRepository {
                 physicalLocation.setLocationId(resultSet.getInt("id"));
             }
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to find" + locationId + exception.getMessage());
         }
         return physicalLocation;
     }
@@ -70,7 +70,7 @@ public class PhysicalLocationRepository {
             preparedStatement.setInt(1, locationId);
             return preparedStatement.executeUpdate();
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to delete location" + locationId + exception.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class PhysicalLocationRepository {
             return preparedStatement.executeUpdate();
 
         } catch (SQLException exception) {
-            throw new RuntimeException(exception.getMessage());
+            throw new RuntimeException("Something went wrong while trying to update location" + locationId + exception.getMessage());
         }
     }
 
