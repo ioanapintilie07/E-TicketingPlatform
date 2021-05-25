@@ -6,16 +6,16 @@ import java.sql.Statement;
 
 public class SetUpData {
     public void setup(){
-        createTableFundraisers();
+        createTableConcerts();
         createTableClients();
         createTablePhysicalLocations();
         createTableOnlineLocations();
         createTableAudit();
     }
 
-    private void createTableFundraisers() {
+    private void createTableConcerts() {
         String query = "CREATE TABLE IF NOT EXISTS concerts(\n" +
-                "    id INT PRIMARY KEY,\n" +
+                "    id INT PRIMARY KEY AUTO_INCREMENT,\n" +
                 "    eventName VARCHAR(255),\n" +
                 "    eventDate VARCHAR(255),\n" +
                 "    description VARCHAR(500), \n" +

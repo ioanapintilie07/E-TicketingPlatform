@@ -10,23 +10,25 @@ import java.util.List;
 public class ConcertRepository {
     public Event createConcert (Event concert) {
         try (Connection connection = DBConfiguration.getDatabaseConnection()) {
-            String query = "INSERT INTO concerts(id, eventName, eventDate, description, durationInHours, locationId, " +
+            String query = "INSERT INTO concerts(eventName, eventDate, description, durationInHours, locationId, " +
                     "participantsLimit, confirmedParticipations, soldOut, musician, genre) " +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, concert.getEventId());
-            preparedStatement.setString(2, concert.getName());
-            preparedStatement.setString(3, concert.getDate());
-            preparedStatement.setString(4, concert.getDescription());
-            preparedStatement.setInt(5, concert.getDurationInHours());
-            preparedStatement.setInt(6, concert.getLocationId());
-            preparedStatement.setInt(7, concert.getParticipantsLimit());
-            preparedStatement.setInt(8, concert.getConfirmedParticipations());
-            preparedStatement.setBoolean(9, concert.getSoldOut());
-            preparedStatement.setString(10, ((Concert)concert).getMusician());
-            preparedStatement.setString(11, ((Concert) concert).getGenre());
+            preparedStatement.setString(1, concert.getName());
+            preparedStatement.setString(2, concert.getDate());
+            preparedStatement.setString(3, concert.getDescription());
+            preparedStatement.setInt(4, concert.getDurationInHours());
+            preparedStatement.setInt(5, concert.getLocationId());
+            preparedStatement.setInt(6, concert.getParticipantsLimit());
+            preparedStatement.setInt(7, concert.getConfirmedParticipations());
+            preparedStatement.setBoolean(8, concert.getSoldOut());
+            preparedStatement.setString(9, ((Concert)concert).getMusician());
+            preparedStatement.setString(10, ((Concert) concert).getGenre());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                concert.setEventId(resultSet.getInt(1));
+            }
             resultSet.close();
             return concert;
         } catch (SQLException exception) {

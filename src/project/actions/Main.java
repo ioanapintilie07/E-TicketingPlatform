@@ -41,12 +41,15 @@ public class Main {
         SetUpData setupData = new SetUpData();
         setupData.setup();
 
-        Service service = new Service();
+        ConcertService concertService = new ConcertService();
+        LocationService locationService = new LocationService();
+        ClientService clientService = new ClientService();
+        EventService eventService = new EventService();
         Reader reader = Reader.getInstance();
         Writer writer = Writer.getInstance();
         AuditService auditService = AuditService.getInstance();
 
-        Service.events.addAll(reader.readEventsCSV());
+        EventService.events.addAll(reader.readEventsCSV());
 
         /*
         //load data from csv files
@@ -60,99 +63,99 @@ public class Main {
             opt = scanner.nextInt();
             switch (opt) {
                 case 1:
-                    service.listEvents();
+                    eventService.listEvents();
                     auditService.add(1);
                     break;
                 case 2:
-                    service.addEvent();
+                    eventService.addEvent();
                     auditService.add(2);
                     break;
                 case 3:
-                    service.generateEvent();
+                    eventService.generateEvent();
                     auditService.add(3);
                     break;
                 case 4:
-                    service.listLocations();
+                    locationService.listLocations();
                     auditService.add(4);
                     break;
                 case 5:
-                    service.addLocation();
+                    locationService.addLocation();
                     auditService.add(5);
                     break;
                 case 6:
-                    service.generateLocation();
+                    locationService.generateLocation();
                     auditService.add(6);
                     break;
                 case 7:
-                    service.listClients();
+                    clientService.listClients();
                     auditService.add(7);
                     break;
                 case 8:
-                    service.addClient();
+                    clientService.addClient();
                     auditService.add(8);
                     break;
                 case 9:
-                    service.generateClient();
+                    clientService.generateClient();
                     auditService.add(9);
                     break;
                 case 10:
-                    service.checkEventAvailability();
+                    eventService.checkEventAvailability();
                     auditService.add(10);
                     break;
                 case 11:
-                    service.buyTicket();
+                    eventService.buyTicket();
                     auditService.add(11);
                     break;
                 case 12:
-                    service.makeDonation();
+                    eventService.makeDonation();
                     auditService.add(12);
                     break;
                 case 13:
-                    service.showSum();
+                    eventService.showSum();
                     auditService.add(13);
                     break;
                 case 14:
-                    service.checkReached();
+                    eventService.checkReached();
                     auditService.add(14);
                     break;
                 case 15:
-                    service.updateFirstName();
+                    clientService.updateFirstName();
                     auditService.add(15);
                     break;
                 case 16:
-                    service.deleteClient();
+                    clientService.deleteClient();
                     auditService.add(16);
                     break;
                 case 17:
-                    service.updateLocation();
+                    locationService.updateLocation();
                     auditService.add(17);
                     break;
                 case 18:
-                    service.deleteLocation();
+                    locationService.deleteLocation();
                     auditService.add(18);
                     break;
                 case 19:
-                    service.searchLocation();
+                    locationService.searchLocation();
                     auditService.add(19);
                     break;
                 case 20:
-                    service.listConcerts();
+                    concertService.listConcerts();
                     auditService.add(20);
                     break;
                 case 21:
-                    service.lookForConcert();
+                    concertService.lookForConcert();
                     auditService.add(21);
                     break;
                 case 22:
-                    service.updateConcertTickets();
+                    concertService.updateConcertTickets();
                     auditService.add(22);
                     break;
                 case 23:
-                    service.deleteConcert();
+                    concertService.deleteConcert();
                     auditService.add(23);
                     break;
                 case 24:
-                    service.addConcertDB();
+                    concertService.addConcertDB();
                     auditService.add(24);
                     break;
                 case 25:
@@ -164,7 +167,7 @@ public class Main {
             }
         }
 
-        writer.writeEvents(Service.events);
+        writer.writeEvents(EventService.events);
 
         /*
         //write data to csv files
