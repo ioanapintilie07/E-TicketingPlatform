@@ -1,10 +1,12 @@
 package project.actions;
 
+import project.DB.SetUpData;
+
 import java.util.Scanner;
 
 public class Main {
     public static void ShowMenu() {
-        System.out.println("1. Show a list of existing events");
+        System.out.println("\n1. Show a list of existing events");
         System.out.println("2. Add an event");
         System.out.println("3. Generate an event");
         System.out.println("4. Show a list of existing locations");
@@ -17,93 +19,158 @@ public class Main {
         System.out.println("11. Buy a ticket to an event");
         System.out.println("12. Make a donation to a fundraiser");
         System.out.println("13. Show how much money a fundraiser raised");
-        System.out.println("14. Check if a fundraiser reached their goal.");
-        System.out.println("0. Exit menu");
+        System.out.println("14. Check if a fundraiser reached their goal");
+        System.out.println("15. Update your first name");
+        System.out.println("16. Delete a client");
+        System.out.println("17. Update a location's name");
+        System.out.println("18. Delete a location");
+        System.out.println("19. Search for a location");
+        System.out.println("20. Show a list of concerts in our database");
+        System.out.println("21. Search concerts in database by performer");
+        System.out.println("22. Update a concert's number of available tickets");
+        System.out.println("23. Delete a concert from database");
+        System.out.println("24. Add a concert to the database (randomly generated");
+        System.out.println("25. Show audit");
+        System.out.println("26. Reset audit");
+        System.out.println("0. Exit menu\n");
     }
 
     public static void main(String[] args) {
         int opt = -1;
         Scanner scanner = new Scanner(System.in);
+        SetUpData setupData = new SetUpData();
+        setupData.setup();
 
         Service service = new Service();
         Reader reader = Reader.getInstance();
         Writer writer = Writer.getInstance();
-        Audit audit = Audit.getInstance();
+        AuditService auditService = AuditService.getInstance();
 
+        Service.events.addAll(reader.readEventsCSV());
+
+        /*
         //load data from csv files
         Service.clients.addAll(reader.readClientsCSV());
         Service.locations.addAll(reader.readPhysicalLocationsCSV());
         Service.locations.addAll(reader.readOnlineLocationsCSV());
-        Service.events.addAll(reader.readEventsCSV());
+        */
+
         while (opt != 0) {
             ShowMenu();
             opt = scanner.nextInt();
             switch (opt) {
                 case 1:
                     service.listEvents();
-                    audit.add(1);
+                    auditService.add(1);
                     break;
                 case 2:
                     service.addEvent();
-                    audit.add(2);
+                    auditService.add(2);
                     break;
                 case 3:
                     service.generateEvent();
-                    audit.add(3);
+                    auditService.add(3);
                     break;
                 case 4:
                     service.listLocations();
-                    audit.add(4);
+                    auditService.add(4);
                     break;
                 case 5:
                     service.addLocation();
-                    audit.add(5);
+                    auditService.add(5);
                     break;
                 case 6:
                     service.generateLocation();
-                    audit.add(6);
+                    auditService.add(6);
                     break;
                 case 7:
                     service.listClients();
-                    audit.add(7);
+                    auditService.add(7);
                     break;
                 case 8:
                     service.addClient();
-                    audit.add(8);
+                    auditService.add(8);
                     break;
                 case 9:
                     service.generateClient();
-                    audit.add(9);
+                    auditService.add(9);
                     break;
                 case 10:
                     service.checkEventAvailability();
-                    audit.add(10);
+                    auditService.add(10);
                     break;
                 case 11:
                     service.buyTicket();
-                    audit.add(11);
+                    auditService.add(11);
                     break;
                 case 12:
                     service.makeDonation();
-                    audit.add(12);
+                    auditService.add(12);
                     break;
                 case 13:
                     service.showSum();
-                    audit.add(13);
+                    auditService.add(13);
                     break;
                 case 14:
                     service.checkReached();
-                    audit.add(14);
+                    auditService.add(14);
+                    break;
+                case 15:
+                    service.updateFirstName();
+                    auditService.add(15);
+                    break;
+                case 16:
+                    service.deleteClient();
+                    auditService.add(16);
+                    break;
+                case 17:
+                    service.updateLocation();
+                    auditService.add(17);
+                    break;
+                case 18:
+                    service.deleteLocation();
+                    auditService.add(18);
+                    break;
+                case 19:
+                    service.searchLocation();
+                    auditService.add(19);
+                    break;
+                case 20:
+                    service.listConcerts();
+                    auditService.add(20);
+                    break;
+                case 21:
+                    service.lookForConcert();
+                    auditService.add(21);
+                    break;
+                case 22:
+                    service.updateConcertTickets();
+                    auditService.add(22);
+                    break;
+                case 23:
+                    service.deleteConcert();
+                    auditService.add(23);
+                    break;
+                case 24:
+                    service.addConcertDB();
+                    auditService.add(24);
+                    break;
+                case 25:
+                    auditService.show();
+                    break;
+                case 26:
+                    auditService.clear();
                     break;
             }
         }
+
+        writer.writeEvents(Service.events);
+
+        /*
         //write data to csv files
         writer.writeClients(Service.clients);
-        writer.writeEvents(Service.events);
         writer.writePhysicalLocations(Service.locations);
-        writer.writeOnlineLocations(Service.locations);
-
-        audit.close();
+        writer.writeOnlineLocations(Service.locations);*/
     }
 
 }

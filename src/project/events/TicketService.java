@@ -1,5 +1,6 @@
 package project.events;
 
+import project.DB.ConcertRepository;
 import project.clientsAndPurchases.Ticket;
 
 public class TicketService {

@@ -29,6 +29,10 @@ public class Event {
         this.locationId = locationId;
         this.participantsLimit = participantsLimit;
     }
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
 
     public String getName() {
         return name;

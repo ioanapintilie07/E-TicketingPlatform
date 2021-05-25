@@ -4,8 +4,13 @@ public class Location {
     protected int locationId;
     protected  String name;
     static int noOfLocations = 0;
-    {
+
+    /*{
         locationId = ++noOfLocations;
+    }*/
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
     public Location(String name) {

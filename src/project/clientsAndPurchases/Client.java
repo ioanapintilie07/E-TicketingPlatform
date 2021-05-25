@@ -8,8 +8,12 @@ public class Client implements Comparable<Client>{
     private int age;
     private int clientId;
     static int noOfClients = 0;
-    {
+    /*{
         this.clientId = ++noOfClients;
+    }*/
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public Client(String firstName, String lastName, int age) {
@@ -48,7 +52,7 @@ public class Client implements Comparable<Client>{
 
     @Override
     public String toString() {
-        return "Name: " + firstName + " " + lastName + ". Age: " + age + ".";
+        return "ClientId:" + clientId + "." + "Name: " + firstName + " " + lastName + ". Age: " + age + ".";
     }
 
     @Override
